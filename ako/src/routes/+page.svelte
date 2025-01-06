@@ -1,0 +1,131 @@
+<section>
+    <h1 class="scroll-animate">LEMUEL</h1>
+    <p>frontend</p>
+    <p>designer & developer</p>
+    <h2 class="scroll-animate">MAGSINO</h2>
+
+
+</section>
+
+<!-- <section>
+
+    <ul>
+        <li>About me</li>
+        <li>Projects</li>
+        <li>Contact</li>
+    </ul>
+
+</section> -->
+
+<section class="projects">
+    <h3>Projects</h3>
+    
+    <ul>
+        <li>B-Rain <a href="https://github.com/lemuelmgsn/fix-the-flow-interactive-website">Link</a></li>
+        <li>We Love Web (Notes)<a href="https://github.com/lemuelmgsn/we-love-web-notes">Link</a></li>
+        <li>GRRR.tech<a href="https://github.com/lemuelmgsn/the-startup-responsive-interactieve-website">Link</a></li>
+        <li>Luh Calm Fit<a href="https://github.com/lemuelmgsn/eigen-website">Link</a></li>
+        <li>Profile card<a href="https://github.com/lemuelmgsn/your-tribe-for-life-profile-card">Link</a></li>
+        <li>Funda<a href="https://github.com/DamianR2004/pleasurable-ui">Link</a></li>
+
+
+    </ul>
+
+
+</section>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Flex', sans-serif;
+    text-decoration: none;
+    color: white;
+}
+section{
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+h1, h2{
+    /* font-size: 280px; */
+    font-size: 17vw;
+    color: white;
+    
+}
+h1{
+    animation: name-right ;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition-duration: 2s ;
+}
+h2{
+    animation: name-left ;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition-duration: 2s ;
+}
+p{
+    animation: fade-in;
+    animation-duration: .6s;
+    animation-delay: 2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+/* keyframe animations */
+
+/* keyframes for "LEMUEL MAGSINO" */
+@keyframes name-right{
+    0%{
+        opacity: 0;
+        transform: translateX(-100vw);
+	    /* transform:rotateY('0deg'); */
+    }
+    85%{
+        transform: translateX(5px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+        /* transform:rotateY('360deg'); */
+    }
+}
+
+@keyframes name-left{
+    0%{
+        opacity: 0;
+        transform: translateX(100vw);
+    }
+    85%{
+        transform: translateX(-5px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* keyframes for "frontend designer & developer" */
+@keyframes fade-in{
+    0%{
+        transform: translateY(15px);
+        opacity: 0;
+    }
+    80%{
+        opacity: .8;
+        transform: translateY(-2px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+</style>
