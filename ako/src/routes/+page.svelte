@@ -21,21 +21,87 @@
     <h3>Projects</h3>
     
     <ul>
-        <li>B-Rain <a href="https://github.com/lemuelmgsn/fix-the-flow-interactive-website">Link</a></li>
-        <li>We Love Web (Notes)<a href="https://github.com/lemuelmgsn/we-love-web-notes">Link</a></li>
-        <li>GRRR.tech<a href="https://github.com/lemuelmgsn/the-startup-responsive-interactieve-website">Link</a></li>
-        <li>Luh Calm Fit<a href="https://github.com/lemuelmgsn/eigen-website">Link</a></li>
-        <li>Profile card<a href="https://github.com/lemuelmgsn/your-tribe-for-life-profile-card">Link</a></li>
-        <li>Funda<a href="https://github.com/DamianR2004/pleasurable-ui">Link</a></li>
-
-
+        <li>
+            <a href="https://github.com/Jesse-Kramer/tumi-mundo">Tumi Mundo</a>
+            <p>a kids language learning app</p>
+        </li>
+        <li>
+            <a href="https://github.com/zoepje/your-tribe-for-life-squad-page">Squad page</a>
+            <p>a squad page of our class</p>
+        </li>
+        <li>
+            <a href="https://github.com/lemuelmgsn/we-love-web-notes">We Love Web (Notes)</a>
+            <p>a website for my 1st year notes</p>
+        </li>
+        <li>
+            <a href="https://github.com/lemuelmgsn/the-startup-responsive-interactieve-website">GRRR.tech</a>
+            <p>a blog for frontenders</p>
+        </li>
+        <li>
+            <a href="https://github.com/lemuelmgsn/eigen-website">Luh Calm Fit</a>
+            <p>an outfit picker website by me</p>
+        </li>
+        <li>
+            <a href="https://github.com/lemuelmgsn/your-tribe-for-life-profile-card">Profile card</a>
+            <p>my profile card</p>
+        </li>
+        <li>
+            <a href="https://github.com/DamianR2004/pleasurable-ui">Funda</a>
+            <p>a redesign for Funda</p>
+        </li>
+        <li>
+            <a href="https://github.com/lemuelmgsn/fix-the-flow-interactive-website">B-Rain</a>
+            <p>a website for water saving solutions</p>
+        </li>
     </ul>
-
 
 </section>
 
-<style>
+<!-- <section class="aboutme">
+    <h4>About me</h4>
 
+</section> -->
+
+<style>
+.projects{
+    background-color: #111111;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.projects h3{
+    padding-top: 10dvh;
+    font-size: 2rem;
+    margin-bottom: 10dvh;
+}
+.projects ul{
+    gap: 10px;
+    align-self: self-start;
+    margin-left: 10dvw;
+}
+.projects li{
+    font-size: 1.2rem;
+    /* margin: 5px; */
+    padding: 1rem;
+    list-style-type: none;
+}
+.projects a{
+    font-size: 1.2rem;
+    margin: 5px;
+    font-weight: bolder;
+}
+.projects a:hover{
+    text-decoration: underline;
+}
+.projects p{
+    font-size: 1rem;
+    margin: 5px;
+    transform: translateX(1rem);
+}
+
+/*  */
 *{
     margin: 0;
     padding: 0;
@@ -44,8 +110,8 @@
     text-decoration: none;
     color: white;
 }
-section{
-    height: 100vh;
+section:first-of-type{
+    height: 100dvh;
     width: 100%;
     background-color: black;
     display: flex;
@@ -72,7 +138,7 @@ h2{
     animation-fill-mode: forwards;
     transition-duration: 2s ;
 }
-p{
+section:first-of-type > p{
     animation: fade-in;
     animation-duration: .6s;
     animation-delay: 2s;
