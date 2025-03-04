@@ -73,5 +73,13 @@ main {
     bottom: 10vh;
     left: 50%;
     transform: translateX(-50%);
+    transition: transform 1s ease-in-out;
+    animation: scoreAnimation 1.2s ease-in-out;
+}
+
+@keyframes scoreAnimation {
+    0% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(-60vh) scale(0.6); }
+    100% { transform: translateX(-50%) translateY(-40vh) scale(0.4); }
 }
 </style>
