@@ -150,5 +150,17 @@ main {
 .shooting-miss {
     animation: missAnimation 1.25s ease-in-out;
 }
+
+.court:has(.shooting-score) .scoreboard {
+    color: green;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.court:has(.shooting-miss) .scoreboard {
+    color: red;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
 </style>
 
