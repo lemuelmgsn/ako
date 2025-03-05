@@ -45,6 +45,12 @@
 </main>
 
 <style>
+*{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 main {
     display: flex;
     justify-content: center;
@@ -74,6 +80,11 @@ main {
     align-items: center;
     background-color: grey;
 }
+.scoreboard {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 .rim {
     width: 100px;
     height: 10px;
