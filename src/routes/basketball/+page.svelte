@@ -1,21 +1,45 @@
 <script>
-    let score = 0;  // Declareert de score en stelt deze in op 0.
-    let ball;  // Declareert een variabele voor de bal (de DOM-element die de bal voorstelt).
-    let isShooting = false;  // Houdt bij of er momenteel een schot wordt afgevuurd (standaard is het 'false').
-    let scored = false;  // Houdt bij of het schot gescoord heeft of niet (standaard is het 'false').
+    import { onMount } from 'svelte';
 
-    function shootBall() {  // Definieert de functie die wordt uitgevoerd bij het schieten.
-        if (!ball || isShooting) return;  // Controleert of de bal niet gedefinieerd is of er al geschoten wordt. Als een van deze waar is, stopt de functie.
+    let score = 0;
+    let ball;
+    let isShooting = false;
+    let scored = false;
 
-        isShooting = true;  // Zet 'isShooting' op true, zodat er geen ander schot kan worden afgevuurd terwijl er al geschoten wordt.
-        scored = Math.random() < 0.6;  // 60% kans om te scoren
+    // Functie om de score op te slaan in localStorage
+    function saveScore() {
+        // Controleert of de code in een browseromgeving draait (window is beschikbaar)
+        if (typeof window !== "undefined") {
+            // Slaat de huidige score op in localStorage onder de sleutel 'score'
+            localStorage.setItem('score', score);
+        }
+    }
 
-        // Verhoog de score als er gescoord is
+    // Functie om de score uit localStorage te laden
+    function loadScore() {
+        // Controleert of de code in een browseromgeving draait en of er een 'score' is opgeslagen in localStorage
+        if (typeof window !== "undefined" && localStorage.getItem('score')) {
+            // Laadt de score op als een getal en wijst het toe aan de 'score' variabele
+            score = parseInt(localStorage.getItem('score'), 10);
+        }
+    }
+
+    // Laad de score bij het starten van de app
+    onMount(() => {
+        loadScore();
+    });
+
+    function shootBall() {
+        if (!ball || isShooting) return;
+
+        isShooting = true;
+        scored = Math.random() < 0.6; // 60% kans om te scoren
+
         if (scored) {
             score += 1;
+            saveScore(); // Sla de score op in localStorage
         }
 
-        // Klassen verwijderen en forceren dat de browser dit herkent
         ball.classList.remove("shooting-score", "shooting-miss");
         void ball.offsetWidth; // Dit forceert een hertekening
 
@@ -23,17 +47,16 @@
         const classToAdd = scored ? "shooting-score" : "shooting-miss";
         ball.classList.add(classToAdd);
 
-        // Zet een timeout zodat er na 1,25 seconden weer een nieuw schot kan worden geschoten
         setTimeout(() => {
             isShooting = false;
-        }, 1250);  // De timeout duurt 1250 milliseconden.
+        }, 1250);
     }
 </script>
 
 <main>
     <button on:click={shootBall}>Shoot the ball!</button>
     <div class="court">
-        <div class="scoreboard">Score: {score}</div>  
+        <div class="scoreboard">Score: {score}</div>
         <div class="basket">
             <div class="rim"></div>
             <div class="net"></div>
@@ -62,6 +85,11 @@ main {
     overflow: hidden;
     perspective: 800px;
 }
+.scoreboard {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 .court {
     position: relative;
     width: 100%;
@@ -80,11 +108,6 @@ main {
     align-items: center;
     background-color: grey;
 }
-.scoreboard {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
 .rim {
     width: 100px;
     height: 10px;
@@ -105,7 +128,6 @@ main {
     bottom: -50px;
     clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
 }
-
 .ball {
     width: 50px;
     height: 50px;
@@ -133,14 +155,14 @@ main {
         transform: translateX(10%) translateY(-60vh) scale(0.9);
     }
     60% { 
-        transform: translateX(20%) translateY(-50vh)  scale(0.8);
+        transform: translateX(20%) translateY(-50vh) scale(0.8);
     }
     70% { 
         transform: translateX(1.5em) translateY(-60vh) scale(0.85);
     }
     100% { 
         transform: translateX(4em) translateY(0) scale(1);
-}
+    }
 }
 
 .shooting-score {
@@ -163,4 +185,3 @@ main {
     transition: color 0.3s ease-in-out;
 }
 </style>
-
