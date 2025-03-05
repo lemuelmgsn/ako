@@ -82,4 +82,22 @@ main {
     50% { transform: translateX(-50%) translateY(-60vh) scale(0.6); }
     100% { transform: translateX(-50%) translateY(-40vh) scale(0.4); }
 }
+
+@keyframes missAnimation {
+        0% { 
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        40% { 
+            transform: translateX(10%) translateY(-60vh) scale(0.9);
+        }
+        60% { 
+            transform: translateX(20%) translateY(-50vh) scale(0.8);
+        }
+        70% { 
+            transform: translateX(1.5em) translateY(-60vh) scale(0.85);
+        }
+        100% { 
+            transform: translateX(4em) translateY(0) scale(1);
+        }
+    }
 </style>
