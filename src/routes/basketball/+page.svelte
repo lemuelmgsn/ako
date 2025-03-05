@@ -8,20 +8,24 @@
         if (!ball || isShooting) return;  // Controleert of de bal niet gedefinieerd is of er al geschoten wordt. Als een van deze waar is, stopt de functie.
 
         isShooting = true;  // Zet 'isShooting' op true, zodat er geen ander schot kan worden afgevuurd terwijl er al geschoten wordt.
-        scored = Math.random() < 0.9;  // Bepaalt met een 90% kans of het schot gescoord is (scored is true) of gemist is (scored is false).
+        scored = Math.random() < 0.6;  // 60% kans om te scoren
 
-        // Klassen verwijderen van de bal om de animatie te resetten
-        ball.classList.remove("shooting-score", "shooting-miss");  // Verwijdert de vorige animatieklassen ('shooting-score' of 'shooting-miss') van de bal.
+        // Verhoog de score als er gescoord is
+        if (scored) {
+            score += 1;
+        }
 
-        void ball.offsetWidth;  // Dit zorgt ervoor dat de browser de bal opnieuw tekent (forceert een hertekening), zodat de klassen opnieuw toegepast kunnen worden.
+        // Klassen verwijderen en forceren dat de browser dit herkent
+        ball.classList.remove("shooting-score", "shooting-miss");
+        void ball.offsetWidth; // Dit forceert een hertekening
 
-        // De juiste klasse wordt toegewezen op basis van of het schot gescoord is of niet
-        const classToAdd = scored ? "shooting-score" : "shooting-miss";  // Kiest de klasse 'shooting-score' als gescoord is, anders 'shooting-miss'.
-        ball.classList.add(classToAdd);  // Voegt de juiste klasse toe aan de bal, afhankelijk van het resultaat van het schot.
+        // Nu opnieuw de juiste klasse toevoegen
+        const classToAdd = scored ? "shooting-score" : "shooting-miss";
+        ball.classList.add(classToAdd);
 
         // Zet een timeout zodat er na 1,25 seconden weer een nieuw schot kan worden geschoten
         setTimeout(() => {
-            isShooting = false;  // Zet 'isShooting' weer op false, zodat een nieuw schot weer kan.
+            isShooting = false;
         }, 1250);  // De timeout duurt 1250 milliseconden.
     }
 </script>
@@ -29,6 +33,7 @@
 <main>
     <button on:click={shootBall}>Shoot the ball!</button>
     <div class="court">
+        <div class="scoreboard">Score: {score}</div>  
         <div class="basket">
             <div class="rim"></div>
             <div class="net"></div>
