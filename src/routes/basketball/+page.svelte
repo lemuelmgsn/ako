@@ -1,17 +1,41 @@
+<script>
+    let score = 0;  // Declareert de score en stelt deze in op 0.
+    let ball;  // Declareert een variabele voor de bal (de DOM-element die de bal voorstelt).
+    let isShooting = false;  // Houdt bij of er momenteel een schot wordt afgevuurd (standaard is het 'false').
+    let scored = false;  // Houdt bij of het schot gescoord heeft of niet (standaard is het 'false').
+
+    function shootBall() {  // Definieert de functie die wordt uitgevoerd bij het schieten.
+        if (!ball || isShooting) return;  // Controleert of de bal niet gedefinieerd is of er al geschoten wordt. Als een van deze waar is, stopt de functie.
+
+        isShooting = true;  // Zet 'isShooting' op true, zodat er geen ander schot kan worden afgevuurd terwijl er al geschoten wordt.
+        scored = Math.random() < 0.9;  // Bepaalt met een 90% kans of het schot gescoord is (scored is true) of gemist is (scored is false).
+
+        // Klassen verwijderen van de bal om de animatie te resetten
+        ball.classList.remove("shooting-score", "shooting-miss");  // Verwijdert de vorige animatieklassen ('shooting-score' of 'shooting-miss') van de bal.
+
+        void ball.offsetWidth;  // Dit zorgt ervoor dat de browser de bal opnieuw tekent (forceert een hertekening), zodat de klassen opnieuw toegepast kunnen worden.
+
+        // De juiste klasse wordt toegewezen op basis van of het schot gescoord is of niet
+        const classToAdd = scored ? "shooting-score" : "shooting-miss";  // Kiest de klasse 'shooting-score' als gescoord is, anders 'shooting-miss'.
+        ball.classList.add(classToAdd);  // Voegt de juiste klasse toe aan de bal, afhankelijk van het resultaat van het schot.
+
+        // Zet een timeout zodat er na 1,25 seconden weer een nieuw schot kan worden geschoten
+        setTimeout(() => {
+            isShooting = false;  // Zet 'isShooting' weer op false, zodat een nieuw schot weer kan.
+        }, 1250);  // De timeout duurt 1250 milliseconden.
+    }
+</script>
+
 <main>
+    <button on:click={shootBall}>Shoot the ball!</button>
     <div class="court">
         <div class="basket">
             <div class="rim"></div>
             <div class="net"></div>
         </div>
-        <div class="ball"><svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27.5" cy="27.5" r="27.5" fill="#B87336"/>
-            <rect x="27" width="1" height="55" fill="black"/>
-            <rect y="28" width="55" height="1" fill="black"/>
-            <path d="M46.2075 48C30.8999 32.1235 32.1961 23.135 46.2075 7" stroke="black"/>
-            <path d="M9 48C24.3076 32.1235 23.0114 23.135 9 7" stroke="black"/>
-            </svg>
-            </div>
+        <div class="ball" bind:this={ball} class:shooting-score={isShooting && scored} class:shooting-miss={isShooting && !scored}>
+            <img src="/basketball.svg" alt="basketball"> 
+        </div>
     </div>
 </main>
 
@@ -43,7 +67,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(147, 147, 147);
+    background-color: grey;
 }
 .rim {
     width: 100px;
@@ -65,39 +89,50 @@ main {
     bottom: -50px;
     clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
 }
+
 .ball {
     width: 50px;
     height: 50px;
+    background: orange;
     border-radius: 50%;
     position: absolute;
     bottom: 10vh;
     left: 50%;
     transform: translateX(-50%);
+    box-shadow: inset -5px -5px 0px rgba(0,0,0,0.3);
     transition: transform 1s ease-in-out;
-    animation: scoreAnimation 1.2s ease-in-out;
 }
 
 @keyframes scoreAnimation {
     0% { transform: translateX(-50%) translateY(0) scale(1); }
-    50% { transform: translateX(-50%) translateY(-60vh) scale(0.6); }
-    100% { transform: translateX(-50%) translateY(-40vh) scale(0.4); }
+    50% { transform: translateX(-50%) translateY(-60vh) scale(0.8); }
+    100% { transform: translateX(-50%) translateY(-40vh) scale(0.6); }
 }
 
 @keyframes missAnimation {
-        0% { 
-            transform: translateX(-50%) translateY(0) scale(1);
-        }
-        40% { 
-            transform: translateX(10%) translateY(-60vh) scale(0.9);
-        }
-        60% { 
-            transform: translateX(20%) translateY(-50vh) scale(0.8);
-        }
-        70% { 
-            transform: translateX(1.5em) translateY(-60vh) scale(0.85);
-        }
-        100% { 
-            transform: translateX(4em) translateY(0) scale(1);
-        }
+    0% { 
+        transform: translateX(-50%) translateY(0) scale(1);
     }
+    40% { 
+        transform: translateX(10%) translateY(-60vh) scale(0.9);
+    }
+    60% { 
+        transform: translateX(20%) translateY(-50vh)  scale(0.8);
+    }
+    70% { 
+        transform: translateX(1.5em) translateY(-60vh) scale(0.85);
+    }
+    100% { 
+        transform: translateX(4em) translateY(0) scale(1);
+}
+}
+
+.shooting-score {
+    animation: scoreAnimation 1.25s ease-in-out;
+}
+
+.shooting-miss {
+    animation: missAnimation 1.25s ease-in-out;
+}
 </style>
+
