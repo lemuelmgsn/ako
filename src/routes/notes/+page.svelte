@@ -5,7 +5,9 @@
 
     let contents = "";
 
-    const md = new MarkdownIt();
+    const md = new MarkdownIt({
+        html: true,
+    });
 
     contents = data.markdownFiles.map(file => ({
         filename: file.filename,
