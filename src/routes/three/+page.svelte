@@ -1,4 +1,5 @@
 <script>
+    import gsap from 'gsap';
     import { onMount } from 'svelte';
     import { render } from 'svelte/server';
     import * as THREE from 'three';
@@ -39,10 +40,16 @@ scene.add(camera) // add camera to scene
 const canvas = document.querySelector('.webgl') // selects canvas
 const renderer = new THREE.WebGLRenderer({ canvas }) // renders canvas
 renderer.setSize(sizes.width, sizes.height) // defines how big the canvas is with width and height
+renderer.setPixelRatio(2) // makes sphere smoother around edges
 renderer.render(scene, camera)
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, canvas) // makes sphere controllable with mouse
+controls.enableDamping = true // enables that sphere doesnt stop spinning automatically when u release mouse
+controls.enablePan = false // disables panning the sphere
+controls.enableZoom = false // disables zooming the sphere
+controls.autoRotate = true // makes sphere automatically rotate
+controls.autoRotateSpeed = 10 // sets speed of the auto rotate
 
 // Resize
 window.addEventListener("resize", () => {
@@ -59,16 +66,30 @@ window.addEventListener("resize", () => {
 })
 
 const loop = () => {
+    controls.update(); // important voor damping and interaction, updates controlls
     renderer.render(scene, camera)
     window,requestAnimationFrame(loop)
 }
 loop()
 
+// Timeline
+const tl = gsap.timeline({defaults: { duration : 1 }})
+tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
+
 
 });
 </script>
 
-<canvas class="webgl"></canvas>
+
+<main>
+    <canvas class="webgl"></canvas>
+    
+    <nav><h1>Ball</h1></nav>
+
+
+</main>
+
+
 
 <style>
 *{
@@ -76,5 +97,20 @@ loop()
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+}
+.webgl{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+nav{
+    position: relative;
+    z-index: 2;
+    color: white;
+    width: 100%;
+}
+h1{
+    color: white;
 }
   </style>
