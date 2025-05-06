@@ -36,9 +36,12 @@ const sizes = {
 }
 
 // Light
-const pointLight = new THREE.PointLight(0xffffff, 50, 100); // Makeks a white light with distance of 100
+const pointLight = new THREE.PointLight(0xffffff, 50 , 100); // Makeks a white light with distance of 100
 pointLight.position.set(0, 10, 10); // position of the light
 scene.add(pointLight); // add light to scene
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+scene.add(ambientLight);
 
 
 // Camera
