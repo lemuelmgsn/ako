@@ -1,7 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-  import { render } from 'svelte/server';
+    import { render } from 'svelte/server';
     import * as THREE from 'three';
+    import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
     
 onMount(() => {
@@ -40,6 +41,9 @@ const renderer = new THREE.WebGLRenderer({ canvas }) // renders canvas
 renderer.setSize(sizes.width, sizes.height) // defines how big the canvas is with width and height
 renderer.render(scene, camera)
 
+// Controls
+const controls = new OrbitControls(camera, canvas)
+
 // Resize
 window.addEventListener("resize", () => {
     // Update sizes
@@ -47,11 +51,11 @@ window.addEventListener("resize", () => {
     sizes.height = window.innerHeight
 
     // Update camera
-    camera.updateProjectionMatrix()
     camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix() // makes canvas responsive (kinda)
 
     // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
+    renderer.setSize(sizes.width, sizes.height) // sets up canvas size
 })
 
 const loop = () => {
