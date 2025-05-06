@@ -97,15 +97,23 @@ tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
 <main>
     <canvas class="webgl"></canvas>
     
-    <nav><h1>Ball</h1></nav>
+    <nav>
+        <h1>3D Basketball with three.js</h1>
+        <ul>
+            <li><a href="/basketball">Play!</a></li>
+            <li><a href="https://github.com/lemuelmgsn">Github</a></li>
+            <li><a href="/home">Home</a></li>
+        </ul>
+    </nav>
 
+    <h2>Drag and spin the basketball!</h2>
 
 </main>
 
 
-
 <style>
 *{
+    font-family: sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -120,10 +128,31 @@ tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
 nav{
     position: relative;
     z-index: 2;
+    padding: 3em;
     color: white;
     width: 100%;
+    display: flex;
+}
+nav > ul{
+    display: flex;
+    margin-left: auto;
+    gap: 2em;
+}
+nav > ul > li > a{
+    color: white;
+    font-size: 1.5em;
 }
 h1{
     color: white;
+    font-size: 2em;
+}
+h2 {
+  position: absolute;
+  bottom: 5vh;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  z-index: 2; 
 }
   </style>
