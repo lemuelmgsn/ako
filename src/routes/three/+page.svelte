@@ -17,25 +17,32 @@ const material = new THREE.MeshStandardMaterial({ // creates material of sphere
 const mesh = new THREE.Mesh(geometry, material) // combines geometry and material of sphere
 scene.add(mesh) // add to scene
 
+// Light
+const light = new THREE.PointLight(0xffffff, 1, 100)
+light.position.set(0, 10, 10)
+scene.add(light)
+
 // Camera
-const camera = new THREE.PerspectiveCamera(45, 800, 600) // creates camera perspective / 45 = perspective / 800 , 600 = aspect ratio
+const camera = new THREE.PerspectiveCamera(45, 800 / 600) // creates camera perspective / 45 = perspective / 800 / 600 = aspect ratio
 camera.position.z = 20 // z index for camera
 scene.add(camera)
 
 // Renderer
-const canvas = document.getElementById('webgl') // selects canvas
+const canvas = document.querySelector('.webgl') // selects canvas
 const renderer = new THREE.WebGLRenderer({ canvas }) // renders canvas
 renderer.setSize(800, 600) // defines how big the canvas is
 renderer.render(scene, camera)
-
-
-
-
-
-
 
 
   });
 </script>
 
 <canvas class="webgl"></canvas>
+
+<style>
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
