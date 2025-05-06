@@ -11,11 +11,21 @@ onMount(() => {
 // Scene
 const scene = new THREE.Scene();
 
-// Create our sphere
+// Textureloader
+const textureLoader = new THREE.TextureLoader()
+const basketballTexture = textureLoader.load('/textures/basketbaltexture.jpg') // loades texture from static/textures
+
+// Create sphere
 const geometry = new THREE.SphereGeometry(3, 64, 64) // creates shape of sphere
-const material = new THREE.MeshStandardMaterial({ // creates material of sphere
-    color: '#00ff83',
+
+// Create material
+const material = new THREE.MeshStandardMaterial({
+  map: basketballTexture,   // basketball texture
+  roughness: 0.8,   // makes it a bit rough
+  metalness: 0.2    // no reflection
 })
+
+
 const mesh = new THREE.Mesh(geometry, material) // combines geometry and material of sphere
 scene.add(mesh) // add mesh to scene
 
@@ -66,7 +76,7 @@ window.addEventListener("resize", () => {
 })
 
 const loop = () => {
-    controls.update(); // important voor damping and interaction, updates controlls
+    controls.update(); // important for damping and interaction, updates controlls
     renderer.render(scene, camera)
     window,requestAnimationFrame(loop)
 }
