@@ -40,6 +40,26 @@ const renderer = new THREE.WebGLRenderer({ canvas }) // renders canvas
 renderer.setSize(sizes.width, sizes.height) // defines how big the canvas is with width and height
 renderer.render(scene, camera)
 
+// Resize
+window.addEventListener("resize", () => {
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    // Update camera
+    camera.updateProjectionMatrix()
+    camera.aspect = sizes.width / sizes.height
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+})
+
+const loop = () => {
+    renderer.render(scene, camera)
+    window,requestAnimationFrame(loop)
+}
+loop()
+
 
 });
 </script>
@@ -51,8 +71,6 @@ renderer.render(scene, camera)
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-body, html{
     overflow-x: hidden;
 }
   </style>
