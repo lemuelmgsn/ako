@@ -5,7 +5,6 @@
     import * as THREE from 'three';
     import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
-    
 onMount(() => {
     
 // Scene
@@ -25,7 +24,6 @@ const material = new THREE.MeshStandardMaterial({
   metalness: 0.2    // no reflection
 })
 
-
 const mesh = new THREE.Mesh(geometry, material) // combines geometry and material of sphere
 scene.add(mesh) // add mesh to scene
 
@@ -42,7 +40,6 @@ scene.add(pointLight); // add light to scene
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight);
-
 
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1 , 100) // creates camera perspective / 45 = perspective -  sizes.width / sizes.height = aspect ratio -  0.1 , 100 = minimal and maximum perspective, if u go under or above you wont see the sphere
@@ -91,12 +88,11 @@ tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
 
 
 });
-</script>
 
+</script>
 
 <main>
     <canvas class="webgl"></canvas>
-    
     <nav>
         <h1>3D Basketball with three.js</h1>
         <ul>
@@ -105,11 +101,8 @@ tl.fromTo(mesh.scale, {z:0, x:0, y:0}, {z:1, x:1, y:1})
             <li><a href="/home">Home</a></li>
         </ul>
     </nav>
-
     <h2>Drag and spin the basketball!</h2>
-
 </main>
-
 
 <style>
 *{
