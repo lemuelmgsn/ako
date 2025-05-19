@@ -59,7 +59,7 @@ controls.enableDamping = true // enables that sphere doesnt stop spinning automa
 controls.enablePan = false // disables panning the sphere
 controls.enableZoom = false // disables zooming the sphere
 controls.autoRotate = true // makes sphere automatically rotate
-controls.autoRotateSpeed = 10 // sets speed of the auto rotate
+controls.autoRotateSpeed = 25 // sets speed of the auto rotate
 
 // Resize
 window.addEventListener("resize", () => {
